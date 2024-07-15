@@ -1,12 +1,5 @@
 #include "philo.h"
 
-static int	ft_isdigit(char c)
-{
-	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
 static int	ft_isspace(char c)
 {
 	if (c >= 9 && c <= 13 || c == 32)
@@ -14,51 +7,62 @@ static int	ft_isspace(char c)
 	return (0);
 }
 
-static const char	*skip(const char *str)
+static int	ft_isdigit(char c)
 {
-	const char	*ret;
-	int		len;
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
+}
+
+static const char	*valid_nbr(const char *str)
+{
+	const char	*number;
+	int			len;
 
 	len = 0;
-	while (ft_isspace(*str))
+	while (ft_isspace(*str) == 1)
 		str++;
 	if (*str == '+')
 		str++;
 	else if (*str == '-')
-		error("No negative values!");
-	if (!ft_isdigit(*str))
-		error("Give me correct digits you stupid!");
-	ret = str;
+		error_exit("please only give positive numbers");
+	number = str;
 	while (ft_isdigit(*str++))
 		len++;
 	if (len > 10)
-		error("no value should be more than INT_MAX !");
-	return (ret);
+		error_exit("number too big");
+	return (number);
 }
 
-static long	ft_atol(const char *str)
+static long	ft_atoi(const char *str)
 {
 	long	number;
 
 	number = 0;
-	str = skip(str);
-	while (ft_isdigit(*str))
+	str = valid_nbr(str);
+	while (ft_isdigit(*str) == 1)
 		number = (number * 10) + (*str++ - 48);
 	if (number > INT_MAX)
-		error("no value should be more than INT_MAX !");
+		error_exit("number too big");
 	return (number);
 }
 
 void	parse(t_store *table, char **argv)
 {
-	table->philo_nbr = ft_atol(argv[1]);
-	table->t_t_d = ft_atol(argv[2]) * 1000;
-	table->t_t_e = ft_atol(argv[3]) * 1000;
-	table->t_t_s = ft_atol(argv[4]) * 1000;
-	if (table->t_t_d < 60000 || table->t_t_e < 60000 || table->t_t_s < 60000)
-		error("Minimum timestamp is 60ms");
+	table->philo_nbr = ft_atoi(argv[1]);
+	if (table->philo_nbr == 0 || table->philo_nbr > 200)
+		error_exit("incorrect philo number");
+	table->t_t_d = ft_atoi(argv[2]);
+	table->t_t_e = ft_atoi(argv[3]);
+	table->t_t_s = ft_atoi(argv[4]);
+	if (table->t_t_d < 60 || table->t_t_e < 60 || table->t_t_s < 60)
+		error_exit("timestamp less than 60ms");
 	if (argv[5])
-		table->meals_limit = ft_atol(argv[5]);
+		table->meals_limit = ft_atoi(argv[5]);
 	else
 		table->meals_limit = -1;
+	table->died = 0;
+	pthread_mutex_init(&table->print_lock, NULL);
+	pthread_mutex_init(&table->dead_lock, NULL);
+	pthread_mutex_init(&table->eat_lock, NULL);
 }

@@ -1,17 +1,21 @@
 #include "philo.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_store	table;
+	t_store			table;
+	t_philo			philos[200];
+	pthread_mutex_t	forks[200];
+
+	table.philos = philos;
+	table.forks = forks;
 	if (argc == 5 || argc == 6)
 	{
 		parse(&table, argv);
-		printf("%lu\n%lu\n%lu\n%lu\n", table.philo_nbr, 
-		table.t_t_d, table.t_t_e, table.t_t_s);
-		if (argc == 6)
-			printf("%lu\n", table.meals_limit);
+		innit_all(&table, forks);
+		create_threads(&table);
+		destroy_all(NULL, &table);
 	}
 	else
-		printf("invalid input\n");
+		return (write(2, "Wrong argument count\n", 22), 1);
 	return (0);
 }
