@@ -7,7 +7,7 @@ void	think(t_philo *philo)
 
 void	dream(t_philo *philo)
 {
-	print_message("is thinking", philo, philo->philo_id);
+	print_message("is sleeping", philo, philo->philo_id);
 	ft_usleep(philo->table->t_t_s);
 }
 
