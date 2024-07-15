@@ -23,14 +23,14 @@ void	eat(t_philo *philo)
 	}
 	pthread_mutex_lock(philo->l_fork);
 	print_message("has taken a fork", philo, philo->philo_id);
-	philo->eat_flag = 1;
+	philo->table->eat_flag = 1;
 	print_message("is eating", philo, philo->philo_id);
 	pthread_mutex_lock(&philo->table->eat_lock);
 	philo->last_meal = get_current_time();
 	philo->meals_eaten++;
 	pthread_mutex_unlock(&philo->table->eat_lock);
 	ft_usleep(philo->table->t_t_e);
-	philo->eat_flag = 0;
+	philo->table->eat_flag = 0;
 	pthread_mutex_unlock(philo->l_fork);
 	pthread_mutex_unlock(philo->r_fork);
 }

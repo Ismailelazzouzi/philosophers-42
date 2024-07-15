@@ -10,7 +10,6 @@ typedef struct s_philo
 	struct s_store	*table;
 	unsigned int	philo_id;
 	unsigned int	meals_eaten;
-	unsigned int	eat_flag;
 	long			last_meal;
 	pthread_mutex_t	*l_fork;
 	pthread_mutex_t	*r_fork;
@@ -30,6 +29,7 @@ typedef struct s_store
 	long			t_t_s;
 	long			meals_limit;
 	long			dinner_start;
+	unsigned int	eat_flag;
 	int				died;
 }	t_store;
 

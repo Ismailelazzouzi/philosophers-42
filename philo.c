@@ -1,7 +1,13 @@
 #include "philo.h"
 
+void	leakcheck(void)
+{
+	system("leaks a.out");
+}
+
 int	main(int argc, char **argv)
 {
+	atexit(leakcheck);
 	t_store			table;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
