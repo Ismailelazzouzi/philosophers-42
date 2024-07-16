@@ -5,25 +5,24 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		write(2, "gettimeofday() error\n", 22);
+		error("gettimeofday() error");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-int	ft_usleep(size_t milliseconds)
+void	ft_usleep(size_t milliseconds)
 {
 	size_t	start;
 
 	start = get_current_time();
 	while ((get_current_time() - start) < milliseconds)
 		usleep(500);
-	return (0);
 }
 
 void	error_exit(char *str)
 {
 	while (*str)
 		write(2, str++, 1);
-	write(1, "\n", 1);
+	write(2, "\n", 1);
 	exit(1);
 }
 
