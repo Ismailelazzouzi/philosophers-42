@@ -37,7 +37,7 @@ typedef struct s_store
 void	parse(t_store *table, char **argv);
 // utils.c
 size_t	get_current_time(void);
-int		ft_usleep(size_t milliseconds);
+void		ft_usleep(size_t milliseconds);
 void	error_exit(char *str);
 void	destroy_all(char *str, t_store *table);
 // innit.c

@@ -5,7 +5,7 @@ size_t	get_current_time(void)
 	struct timeval	time;
 
 	if (gettimeofday(&time, NULL) == -1)
-		error("gettimeofday() error");
+		error_exit("gettimeofday() error");
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
