@@ -7,11 +7,11 @@ void	leakcheck(void)
 
 int	main(int argc, char **argv)
 {
-	atexit(leakcheck);
 	t_store			table;
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
 
+	atexit(leakcheck);
 	table.philos = philos;
 	table.forks = forks;
 	if (argc == 5 || argc == 6)

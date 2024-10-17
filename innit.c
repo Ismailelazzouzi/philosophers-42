@@ -10,7 +10,6 @@ static void	innit_philos(t_store *table)
 		table->philos[i].table = table;
 		table->philos[i].philo_id = i + 1;
 		table->philos[i].meals_eaten = 0;
-		table->philos[i].table->eat_flag = 0;
 		table->dinner_start = get_current_time();
 		table->philos[i].last_meal = get_current_time();
 		table->philos[i].l_fork = &table->forks[i];

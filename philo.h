@@ -29,7 +29,6 @@ typedef struct s_store
 	long			t_t_s;
 	long			meals_limit;
 	long			dinner_start;
-	unsigned int	eat_flag;
 	int				died;
 }	t_store;
 
@@ -37,14 +36,14 @@ typedef struct s_store
 void	parse(t_store *table, char **argv);
 // utils.c
 size_t	get_current_time(void);
-void		ft_usleep(size_t milliseconds);
+void	ft_usleep(size_t milliseconds);
 void	error_exit(char *str);
 void	destroy_all(char *str, t_store *table);
 // innit.c
 void	innit_all(t_store *table, pthread_mutex_t *forks);
 // threads.c
-int	create_threads(t_store *table);
-int	dead_loop(t_philo *philo);
+int		create_threads(t_store *table);
+int		dead_loop(t_philo *philo);
 // monitor.c
 void	*monitoring(void *pointer);
 void	print_message(char *str, t_philo *philo, unsigned int id);

@@ -35,7 +35,8 @@ int	create_threads(t_store *table)
 	i = 0;
 	while (i < table->philo_nbr)
 	{
-		if (pthread_create(&table->philos[i].philo, NULL, &routine, &table->philos[i]) != 0)
+		if (pthread_create(&table->philos[i].philo, NULL,
+				&routine, &table->philos[i]) != 0)
 			destroy_all("error creating threads", table);
 		i++;
 	}
