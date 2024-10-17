@@ -11,7 +11,6 @@ int	main(int argc, char **argv)
 	t_philo			philos[200];
 	pthread_mutex_t	forks[200];
 
-	atexit(leakcheck);
 	table.philos = philos;
 	table.forks = forks;
 	if (argc == 5 || argc == 6)

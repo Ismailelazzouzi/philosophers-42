@@ -14,7 +14,7 @@ void	print_message(char *str, t_philo *philo, unsigned int id)
 int	philosopher_dead(t_philo *philo, long time_to_die)
 {
 	pthread_mutex_lock(&philo->table->eat_lock);
-	if (get_current_time() - philo->last_meal >= time_to_die)
+	if (get_current_time() - philo->last_meal >= (unsigned long)time_to_die)
 		return (pthread_mutex_unlock(&philo->table->eat_lock), 1);
 	pthread_mutex_unlock(&philo->table->eat_lock);
 	return (0);
