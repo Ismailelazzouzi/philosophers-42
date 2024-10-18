@@ -1,7 +1,7 @@
 NAME = philo
 HEADER = philo.h
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=thread -g
 RM = rm -f
 
 FILES = philo \
