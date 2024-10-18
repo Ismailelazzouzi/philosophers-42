@@ -6,7 +6,7 @@
 /*   By: isel-azz <isel-azz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/18 06:28:55 by isel-azz          #+#    #+#             */
-/*   Updated: 2024/10/18 15:42:00 by isel-azz         ###   ########.fr       */
+/*   Updated: 2024/10/18 15:50:49 by isel-azz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,12 @@ static void	*routine(void *pointer)
 
 	philo = (t_philo *)pointer;
 	if (philo->philo_id % 2 == 0)
-		dream(philo);
+		ft_usleep(1);
 	while (!dead_loop(philo))
 	{
-		think(philo);
 		eat(philo);
 		dream(philo);
+		think(philo);
 	}
 	return (pointer);
 }
