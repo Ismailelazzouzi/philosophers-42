@@ -1,34 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: isel-azz <isel-azz@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/18 06:28:49 by isel-azz          #+#    #+#             */
-/*   Updated: 2024/10/18 07:18:19 by isel-azz         ###   ########.fr       */
+/*   Created: 2024/10/18 06:47:18 by isel-azz          #+#    #+#             */
+/*   Updated: 2024/10/18 07:18:05 by isel-azz         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	main(int argc, char **argv)
+int	ft_isdigit(char c)
 {
-	t_store			table;
-	t_philo			philos[200];
-	pthread_mutex_t	forks[200];
-
-	table.philos = philos;
-	table.forks = forks;
-	if (argc == 5 || argc == 6)
-	{
-		check_args(argv);
-		parse(&table, argv);
-		innit_all(&table, forks);
-		create_threads(&table);
-		destroy_all(NULL, &table);
-	}
-	else
-		return (write(2, "Wrong argument count\n", 22), 1);
+	if (c >= '0' && c <= '9')
+		return (1);
 	return (0);
+}
+
+void	check_args(char **args)
+{
+	int	i;
+	int	j;
+
+	i = 1;
+	j = 0;
+	while (args[i])
+	{
+		j = 0;
+		while (args[i][j])
+		{
+			if (ft_isdigit(args[i][j]) != 1)
+				error_exit("invalid number");
+			j++;
+		}
+		i++;
+	}
 }

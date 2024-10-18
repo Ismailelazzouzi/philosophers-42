@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: isel-azz <isel-azz@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/18 07:18:25 by isel-azz          #+#    #+#             */
+/*   Updated: 2024/10/18 07:18:55 by isel-azz         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <unistd.h>
 #include <pthread.h>
 #include <stdlib.h>
@@ -32,22 +44,17 @@ typedef struct s_store
 	int				died;
 }	t_store;
 
-// parse.c
+void	check_args(char **args);
 void	parse(t_store *table, char **argv);
-// utils.c
 size_t	get_current_time(void);
 void	ft_usleep(size_t milliseconds);
 void	error_exit(char *str);
 void	destroy_all(char *str, t_store *table);
-// innit.c
 void	innit_all(t_store *table, pthread_mutex_t *forks);
-// threads.c
 int		create_threads(t_store *table);
 int		dead_loop(t_philo *philo);
-// monitor.c
 void	*monitoring(void *pointer);
 void	print_message(char *str, t_philo *philo, unsigned int id);
-// routine.c
 void	think(t_philo *philo);
 void	dream(t_philo *philo);
 void	eat(t_philo *philo);

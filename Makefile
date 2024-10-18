@@ -1,7 +1,7 @@
 NAME = philo
 HEADER = philo.h
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -fsanitize=thread -g
 RM = rm -f
 
 FILES = philo \
@@ -11,6 +11,7 @@ FILES = philo \
 		routine \
 		threads \
 		utils \
+		utils1 \
 
 SRCS = $(addsuffix .c, $(FILES))
 
